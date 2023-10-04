@@ -1,43 +1,51 @@
 def substrings(word, dictionary)
 
-    require 'pry'
-    # #Split word into individual letters
+    #Create array to track substrings in dictionary
+    matches = []
+
+    word.downcase!
+
+    #Store letters of word into letters array 
     letters = word.split('')
 
-    #Create hash to store results
-    results = Hash.new
+    p letters
+    
+    #Look through dictionary for strings containing 'l'
+    #Store matches into matches array
+    dictionary.each do |string|
+        if string.include?('l')
+            matches.push(string)
+        end
+    end
+    p matches
 
-    #Find the location of word in dictionary
-    word_index = dictionary.index(word)
-    puts "#{word} is at index: #{word_index} in dictionary"
+    #Count the number of matches and store in match count
+    match_count = matches.count 
+    puts "There are: #{match_count} maches"
 
-    #Search for words containing "low"
-    matches = dictionary.select {|string| string.include?('low')}
-    puts "The following are substrings of #{word}: #{matches}"
+    #Create hash to store substrings
+    hash = {}
 
-    #Count number of times word is in dictionary
-    substring_count = dictionary.count {|substring| substring.include?('below') }
-    puts "#{word} is in dictionary #{substring_count} time"
+    #Store each match as key in hash
+    add_hash_key = matches.each do |match|
+        hash[match]
+    end
+
+    #Count each num times hash key ia in dictionary
+    #Store result as value in hash
+    hash = add_hash_key.tally
+    p hash
 
 
 end
 
 substrings('below', ["below","down","go","going","horn","how","howdy","it","i",
-    "low","own","part","partner","sit",])
+    "low","own","part","partner","sit"])
 
 
-    # Logic Notes
-
-    # 5. search for match in dictionary and return match(es) idx
-    # occurences = dictionary.select (or find) {|match, idx| dictionary.include?(match) p idx}
-
-    # below occurs once --> below: 1 idx 0
     
-    # low occurs once --> low: 1 idx 9
 
-    # 6. turn matches w/ number of occurences into hash --> substrings = { below: 1, low: 1 }
-    # combo_array = [matches && occurences] (nested arr)
-    # combo_array.to_h or New.Hash(matches && occurences)
+
     
 
     
