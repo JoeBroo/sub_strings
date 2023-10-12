@@ -19,16 +19,12 @@ def substrings(word, dictionary)
 
         #Read through each of string's letters
         #If word includes dictionary word: store into matches array
-        string_letters.each do
 
             if word.include?(string)
                 matches.push(string)
                 puts "Test returns: #{string}"
             end
         end
-    end
-
-    p matches
 
     #Count the number of matches and store in match count
     match_count = matches.count 
@@ -38,21 +34,24 @@ def substrings(word, dictionary)
     hash = {}
 
     #Store each match as key in hash
-    add_hash_key = matches.each do |match|
+    hash = matches.each.tally do |match|
         hash[match]
     end
 
-    #Count each num times hash key ia in dictionary
     #Store result as value in hash
-    hash = add_hash_key.tally
     p hash
+
+    
 
 end
 
-substrings('below', ["below","down","go","going","horn","how","howdy","it","i",
-    "low","own","part","partner","sit"])
+# how should return  2  
+# it should return  2 
+# i should return  3
+# substrings('below', ["below","down","go","going","horn","how","howdy","it","i",
+#     "low","own","part","partner","sit"])
 
-# substrings("Howdy partner, sit down! How's it going?", ["below","down","go","going","horn","how","howdy","it","i",
-#     "low","own","part","partner","sit"] )
+substrings("Howdy partner, sit down! How's it going?", ["below","down","go","going","horn","how","howdy","it","i",
+    "low","own","part","partner","sit"] )
 
    
